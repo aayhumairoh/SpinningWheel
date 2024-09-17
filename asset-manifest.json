@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SpinningWheel/static/css/main.93dd95ca.css",
+    "main.js": "/SpinningWheel/static/js/main.29eef577.js",
+    "index.html": "/SpinningWheel/index.html",
+    "main.93dd95ca.css.map": "/SpinningWheel/static/css/main.93dd95ca.css.map",
+    "main.29eef577.js.map": "/SpinningWheel/static/js/main.29eef577.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.93dd95ca.css",
+    "static/js/main.29eef577.js"
+  ]
+}
