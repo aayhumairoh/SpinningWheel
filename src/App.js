@@ -23,7 +23,6 @@ export default function App() {
         const response = await fetch(`https://graph.instagram.com/${mediaId}/comments?access_token=${accessToken}`);
         const data = await response.json();
         const usernames = data.data.map(comment => comment.username); // Ambil username dari tiap komentar
-        console.log('username', data)
         setNames(usernames);
       } catch (error) {
         console.error('Error fetching Instagram comments:', error);
@@ -74,14 +73,24 @@ export default function App() {
   // Event handler when wheel finishes spinning
   const onFinished = (winner) => {
     console.log("winner", winner);
-    setWinner(winner)
-    setModal(true)
 
+    // Remove the winner from the segments and segColors
+    const updatedSegments = segments.filter(segment => segment !== winner);
+    const winnerIndex = segments.indexOf(winner);
+    const updatedSegColors = segColors.filter((_, i) => i !== winnerIndex);
+
+    // Update the segments and colors before setting the winner
+    setSegments(updatedSegments);
+    setSegColors(updatedSegColors);
+    setWinner(winner);
+
+    // Show modal after removing the winner from the list
+    setModal(true);
   };
 
   const closeModal = () => {
-    setModal(false)
-  }
+    setModal(false);
+  };
 
   return (
     <div className="App">
@@ -114,7 +123,7 @@ export default function App() {
         {segments.length > 0 && (
           <div className="wheel-container">
             <WheelComponent
-              key={segments.join(",")}
+              key={segments.join(",")} // Ensures the wheel re-renders when segments change
               segments={segments}
               segColors={segColors}
               onFinished={(winner) => onFinished(winner)}
